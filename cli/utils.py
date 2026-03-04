@@ -1,7 +1,10 @@
 import questionary
-from typing import List, Optional, Tuple, Dict
+from typing import List
 
+from rich.console import Console
 from cli.models import AnalystType
+
+console = Console()
 
 ANALYST_ORDER = [
     ("Market Analyst", AnalystType.MARKET),
@@ -135,9 +138,9 @@ def select_shallow_thinking_agent(provider) -> str:
             ("GPT-4.1 - Smartest non-reasoning, 1M context", "gpt-4.1"),
         ],
         "anthropic": [
-            ("Claude Haiku 4.5 - Fast + extended thinking", "claude-haiku-4-5"),
-            ("Claude Sonnet 4.5 - Best for agents/coding", "claude-sonnet-4-5"),
-            ("Claude Sonnet 4 - High-performance", "claude-sonnet-4-20250514"),
+            ("Claude Haiku 4.5 - Fastest, near-frontier", "claude-haiku-4-5"),
+            ("Claude Sonnet 4.6 - Best speed + intelligence", "claude-sonnet-4-6"),
+            ("Claude Sonnet 4.5 - Fast, great for agents", "claude-sonnet-4-5"),
         ],
         "google": [
             ("Gemini 3 Flash - Next-gen fast", "gemini-3-flash-preview"),
@@ -201,11 +204,11 @@ def select_deep_thinking_agent(provider) -> str:
             ("GPT-5 Nano - Ultra-fast, high-throughput", "gpt-5-nano"),
         ],
         "anthropic": [
-            ("Claude Sonnet 4.5 - Best for agents/coding", "claude-sonnet-4-5"),
-            ("Claude Opus 4.5 - Premium, max intelligence", "claude-opus-4-5"),
-            ("Claude Opus 4.1 - Most capable model", "claude-opus-4-1-20250805"),
-            ("Claude Haiku 4.5 - Fast + extended thinking", "claude-haiku-4-5"),
-            ("Claude Sonnet 4 - High-performance", "claude-sonnet-4-20250514"),
+            ("Claude Opus 4.6 - Most intelligent, agents/coding", "claude-opus-4-6"),
+            ("Claude Sonnet 4.6 - Best speed + intelligence", "claude-sonnet-4-6"),
+            ("Claude Opus 4.5 - Premium intelligence", "claude-opus-4-5"),
+            ("Claude Sonnet 4.5 - Fast, great for agents", "claude-sonnet-4-5"),
+            ("Claude Haiku 4.5 - Fastest, near-frontier", "claude-haiku-4-5"),
         ],
         "google": [
             ("Gemini 3 Pro - Reasoning-first", "gemini-3-pro-preview"),
