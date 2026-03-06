@@ -1,10 +1,15 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "tradingagents"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.2.0"
+description = "TradingAgents: Multi-Agents LLM Financial Trading Framework"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "langchain-core>=0.3.81",
     "backtrader>=1.9.78.123",
     "chainlit>=2.5.5",
     "langchain-anthropic>=0.3.15",
@@ -27,3 +32,9 @@ dependencies = [
     "typing-extensions>=4.14.0",
     "yfinance>=0.2.63",
 ]
+
+[project.scripts]
+tradingagents = "cli.main:app"
+
+[tool.setuptools.packages.find]
+include = ["tradingagents*", "cli*"]
