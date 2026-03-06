@@ -261,22 +261,23 @@ class TradingAgentsGraph:
             json.dump(self.log_states_dict, f, indent=4)
 
     def reflect_and_remember(self, returns_losses):
-        """Reflect on decisions and update memory based on returns."""
-        self.reflector.reflect_bull_researcher(
-            self.curr_state, returns_losses, self.bull_memory
-        )
-        self.reflector.reflect_bear_researcher(
-            self.curr_state, returns_losses, self.bear_memory
-        )
-        self.reflector.reflect_trader(
-            self.curr_state, returns_losses, self.trader_memory
-        )
-        self.reflector.reflect_invest_judge(
-            self.curr_state, returns_losses, self.invest_judge_memory
-        )
-        self.reflector.reflect_risk_manager(
-            self.curr_state, returns_losses, self.risk_manager_memory
-        )
+        """DISABLED: Reflect on decisions and update memory based on returns.
+
+        This method has been disabled due to fundamental design flaws in the memory system.
+        See docs/design_issues/MEMORY_SYSTEM_DISABLED.md for full details.
+
+        Problems with the current implementation:
+        - Input parameter is context-free (what does $1000 mean without position size or timeframe?)
+        - BM25 keyword matching is wrong algorithm for financial text (not semantic)
+        - No ticker/sector/macro regime awareness (lessons can cross-contaminate)
+        - No persistence across sessions (resets on restart)
+        - No quality control (bad lessons aren't filtered or downweighted)
+
+        The memory system will remain initialized but unused. To re-enable learning with proper
+        design, see the documentation for recommended approaches (semantic embeddings, proper
+        metadata, persistence layer, quality scoring).
+        """
+        pass
 
     def process_signal(self, full_signal):
         """Process a signal to extract the core decision."""
